@@ -1,0 +1,12 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "genetix:ground_fish"
+        }
+    ],
+    "result": {
+        "item": "genetix:raw_fish_ball",
+        "count": 1
+    }
+}

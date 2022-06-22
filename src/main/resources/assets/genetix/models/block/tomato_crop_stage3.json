@@ -1,0 +1,6 @@
+{
+    "parent": "block/cross",
+    "textures": {
+        "cross": "genetix:block/tomato_crop_stage3"
+    }
+}

@@ -1,0 +1,15 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "genetix:dough"
+        },
+        {
+            "item": "genetix:ground_pork"
+        }
+    ],
+    "result": {
+        "item": "genetix:unsteamed_pork_baozi",
+        "count": 1
+    }
+}

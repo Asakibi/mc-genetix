@@ -1,0 +1,10 @@
+{
+    "type": "minecraft:smelting",
+    "ingredient": [
+        {
+            "item": "genetix:raw_fish_ball"
+        }
+    ],
+    "result": "genetix:fish_ball",
+    "experience": 0.35
+}

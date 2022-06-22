@@ -1,0 +1,10 @@
+{
+    "type": "minecraft:smelting",
+    "ingredient": [
+        {
+            "item": "genetix:unsteamed_beef_baozi"
+        }
+    ],
+    "result": "genetix:beef_baozi",
+    "experience": 0.35
+}

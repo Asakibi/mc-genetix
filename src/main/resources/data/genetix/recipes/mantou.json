@@ -1,0 +1,10 @@
+{
+    "type": "minecraft:smelting",
+    "ingredient": [
+        {
+            "item": "genetix:unsteamed_mantou"
+        }
+    ],
+    "result": "genetix:mantou",
+    "experience": 0.35
+}

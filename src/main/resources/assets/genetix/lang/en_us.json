@@ -1,0 +1,59 @@
+{
+  "itemGroup.genetix.default": "Genetix - Default",
+  "itemGroup.genetix.tools": "Genetix - Tools",
+  "itemGroup.genetix.food": "Genetix - Food",
+
+  "item.genetix.animal_cotton_swab": "Animal Cotton Swab",
+  "item.genetix.animal_cotton_swab.tooltip.null": "§o§7No data§r",
+  "item.genetix.animal_cotton_swab.tooltip.no_structure": "§o§7No entity§r",
+  "item.genetix.animal_cotton_swab.tooltip.no_chromosomes": "§o§7No chromosomes§r",
+
+  "item.genetix.plant_cotton_swab": "Plant Cotton Swab",
+  "item.genetix.plant_cotton_swab.tooltip.null": "§o§7No data§r",
+  "item.genetix.plant_cotton_swab.tooltip.no_structure": "§o§7No plant§r",
+  "item.genetix.plant_cotton_swab.tooltip.no_chromosomes": "§o§7No chromosomes§r",
+
+  "item.genetix.flour": "Flour",
+  "item.genetix.dough": "Dough",
+  "item.genetix.potato_starch": "Potato Starch",
+
+  "item.genetix.ground_pork": "Ground Pork",
+  "item.genetix.ground_beef": "Ground Beef",
+  "item.genetix.ground_chicken": "Ground Chicken",
+  "item.genetix.ground_mutton": "Ground Mutton",
+  "item.genetix.ground_fish": "Ground Fish",
+
+  "item.genetix.unsteamed_mantou": "Unsteamed Mantou",
+  "item.genetix.unsteamed_pork_baozi": "Unsteamed Pork Baozi",
+  "item.genetix.unsteamed_beef_baozi": "Unsteamed Beef Baozi",
+  "item.genetix.unsteamed_chicken_baozi": "Unsteamed Chicken Baozi",
+  "item.genetix.unsteamed_mutton_baozi": "Unsteamed Mutton Baozi",
+  "item.genetix.unsteamed_fish_baozi": "Unsteamed Fish Baozi",
+
+  "item.genetix.raw_pork_meatball": "Raw Pork Meatball",
+  "item.genetix.raw_beef_meatball": "Raw Beef Meatball",
+  "item.genetix.raw_chicken_meatball": "Raw Chicken Meatball",
+  "item.genetix.raw_mutton_meatball": "Raw Mutton Meatball",
+  "item.genetix.raw_fish_ball": "Raw Fish Ball",
+
+  "item.genetix.mantou": "Mantou",
+  "item.genetix.pork_baozi": "Pork Baozi",
+  "item.genetix.beef_baozi": "Beef Baozi",
+  "item.genetix.chicken_baozi": "Chicken Baozi",
+  "item.genetix.mutton_baozi": "Mutton Baozi",
+  "item.genetix.fish_baozi": "Fish Baozi",
+
+  "item.genetix.pork_meatball": "Pork Meatball",
+  "item.genetix.beef_meatball": "Beef Meatball",
+  "item.genetix.chicken_meatball": "Chicken Meatball",
+  "item.genetix.mutton_meatball": "Mutton Meatball",
+  "item.genetix.fish_ball": "Fish Ball",
+
+  "item.genetix.red_tomato": "Red Tomato",
+  "item.genetix.pink_tomato": "Pink Tomato",
+  "item.genetix.orange_tomato": "Orange Tomato",
+  "item.genetix.yellow_tomato": "Yellow Tomato",
+  "item.genetix.tomato_seeds": "Tomato Seeds",
+
+  "entity.genetix.sheep": "Sheep"
+}

@@ -1,0 +1,10 @@
+{
+    "type": "minecraft:smelting",
+    "ingredient": [
+        {
+            "item": "genetix:raw_pork_meatball"
+        }
+    ],
+    "result": "genetix:pork_meatball",
+    "experience": 0.35
+}

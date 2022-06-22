@@ -1,0 +1,12 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "genetix:dough"
+        }
+    ],
+    "result": {
+        "item": "genetix:unsteamed_mantou",
+        "count": 1
+    }
+}

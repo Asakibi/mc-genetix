@@ -1,0 +1,10 @@
+{
+    "type": "minecraft:smelting",
+    "ingredient": [
+        {
+            "item": "genetix:unsteamed_pork_baozi"
+        }
+    ],
+    "result": "genetix:pork_baozi",
+    "experience": 0.35
+}

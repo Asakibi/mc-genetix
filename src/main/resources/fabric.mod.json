@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "id": "genetix",
+  "version": "${version}",
+
+  "name": "Genetix Mod",
+  "description": "Genetix Mod by ts4b",
+  "authors": [
+    "ts4b"
+  ],
+  "contact": {
+    "homepage": "https://asakibi.com",
+    "sources": "https://github.com/FabricMC/fabric-example-mod"
+  },
+
+  "license": "CC0-1.0",
+  "icon": "assets/genetix/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.asakibi.genetix.Mod"
+    ],
+    "client": [
+      "com.asakibi.genetix.ModClient"
+    ]
+  },
+  "mixins": [
+    "genetix.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.14.6",
+    "fabric": "*",
+    "minecraft": "~1.19",
+    "java": ">=17"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
+}

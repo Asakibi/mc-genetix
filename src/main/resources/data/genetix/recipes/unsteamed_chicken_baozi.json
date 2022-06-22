@@ -1,0 +1,15 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "genetix:dough"
+        },
+        {
+            "item": "genetix:ground_chicken"
+        }
+    ],
+    "result": {
+        "item": "genetix:unsteamed_chicken_baozi",
+        "count": 1
+    }
+}

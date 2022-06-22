@@ -1,0 +1,12 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "genetix:ground_pork"
+        }
+    ],
+    "result": {
+        "item": "genetix:raw_pork_meatball",
+        "count": 1
+    }
+}

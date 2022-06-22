@@ -1,0 +1,36 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "genetix:flour"
+        },
+        {
+            "item": "genetix:flour"
+        },
+        {
+            "item": "genetix:flour"
+        },
+        {
+            "item": "genetix:flour"
+        },
+        {
+            "item": "genetix:flour"
+        },
+        {
+            "item": "genetix:flour"
+        },
+        {
+            "item": "genetix:flour"
+        },
+        {
+            "item": "genetix:flour"
+        },
+        {
+            "item": "minecraft:water_bucket"
+        }
+    ],
+    "result": {
+        "item": "genetix:dough",
+        "count": 8
+    }
+}
