@@ -2,11 +2,13 @@ package com.asakibi.genetix.entity;
 
 import com.asakibi.genetix.genetics.Trait;
 import com.asakibi.genetix.genetics.diploid.GenetixSheepDiploid;
-import com.asakibi.genetix.item.AnimalCottonSwabItem;
+import com.asakibi.genetix.item.AnimalGenotypingCottonSwabItem;
 import com.asakibi.genetix.item.registry.ItemRegistry;
 import com.google.common.collect.Maps;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.entity.*;
+import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributeInstance;
 import net.minecraft.entity.attribute.EntityAttributes;
@@ -18,7 +20,9 @@ import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.*;
+import net.minecraft.item.ItemConvertible;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.loot.LootTables;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.recipe.Ingredient;
@@ -38,22 +42,6 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.stream.Collectors;
-import net.minecraft.entity.EntityData;
-import net.minecraft.entity.EntityDimensions;
-import net.minecraft.entity.EntityPose;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.ItemEntity;
-import net.minecraft.entity.Shearable;
-import net.minecraft.entity.SpawnReason;
-import net.minecraft.entity.ai.goal.AnimalMateGoal;
-import net.minecraft.entity.ai.goal.EatGrassGoal;
-import net.minecraft.entity.ai.goal.EscapeDangerGoal;
-import net.minecraft.entity.ai.goal.FollowParentGoal;
-import net.minecraft.entity.ai.goal.LookAroundGoal;
-import net.minecraft.entity.ai.goal.LookAtEntityGoal;
-import net.minecraft.entity.ai.goal.SwimGoal;
-import net.minecraft.entity.ai.goal.TemptGoal;
-import net.minecraft.entity.ai.goal.WanderAroundFarGoal;
 
 public class GenetixSheepEntity extends AnimalEntity implements Shearable {
     private static final int MAX_GRASS_TIMER = 40;
@@ -80,7 +68,7 @@ public class GenetixSheepEntity extends AnimalEntity implements Shearable {
     }
 
     public static float[] getRgbColor(DyeColor dyeColor) {
-        return (float[])COLORS.get(dyeColor);
+        return COLORS.get(dyeColor);
     }
 
     public GenetixSheepEntity(EntityType<? extends GenetixSheepEntity> entityType, World world) {
@@ -93,7 +81,7 @@ public class GenetixSheepEntity extends AnimalEntity implements Shearable {
         this.goalSelector.add(0, new SwimGoal(this));
         this.goalSelector.add(1, new EscapeDangerGoal(this, 1.25));
         this.goalSelector.add(2, new AnimalMateGoal(this, 1.0));
-        this.goalSelector.add(3, new TemptGoal(this, 1.1, Ingredient.ofItems(new ItemConvertible[]{Items.WHEAT}), false));
+        this.goalSelector.add(3, new TemptGoal(this, 1.1, Ingredient.ofItems(Items.WHEAT), false));
         this.goalSelector.add(4, new FollowParentGoal(this, 1.1));
         this.goalSelector.add(5, this.eatGrassGoal);
         this.goalSelector.add(6, new WanderAroundFarGoal(this, 1.0));
@@ -201,7 +189,8 @@ public class GenetixSheepEntity extends AnimalEntity implements Shearable {
                 return ActionResult.CONSUME;
             }
         }
-        else if (itemStack.isOf(ItemRegistry.ANIMAL_COTTON_SWAB)) {
+
+        else if (itemStack.isOf(ItemRegistry.ANIMAL_GENOTYPING_COTTON_SWAB)) {
             if (!this.world.isClient) {
                 NbtCompound nbt = itemStack.getNbt();
                 if (nbt != null) {
@@ -209,10 +198,8 @@ public class GenetixSheepEntity extends AnimalEntity implements Shearable {
                 }
 
                 itemStack.decrement(1);
-                ItemStack newItemStack = new ItemStack(ItemRegistry.ANIMAL_COTTON_SWAB);
-                AnimalCottonSwabItem.addNbt(newItemStack,
-                    diploid.getLowerCaseStructureName(),
-                    diploid.toStringMap());
+                ItemStack newItemStack = new ItemStack(ItemRegistry.ANIMAL_GENOTYPING_COTTON_SWAB);
+                AnimalGenotypingCottonSwabItem.addNbt(newItemStack, diploid);
                 this.dropStack(newItemStack, 1);
                 return ActionResult.SUCCESS;
             }
@@ -234,7 +221,7 @@ public class GenetixSheepEntity extends AnimalEntity implements Shearable {
         for(int j = 0; j < i; ++j) {
             ItemEntity itemEntity = this.dropItem(DROPS.get(this.getColor()), 1);
             if (itemEntity != null) {
-                itemEntity.setVelocity(itemEntity.getVelocity().add((this.random.nextFloat() - this.random.nextFloat()) * 0.1F, (double)(this.random.nextFloat() * 0.05F), (double)((this.random.nextFloat() - this.random.nextFloat()) * 0.1F)));
+                itemEntity.setVelocity(itemEntity.getVelocity().add((this.random.nextFloat() - this.random.nextFloat()) * 0.1F, this.random.nextFloat() * 0.05F, (this.random.nextFloat() - this.random.nextFloat()) * 0.1F));
             }
         }
 

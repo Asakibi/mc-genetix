@@ -2,7 +2,9 @@ package com.asakibi.genetix.genetics;
 
 import com.asakibi.genetix.config.CrossoverConfig;
 
-import java.util.*;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Set;
 
 public enum ChromosomeStructure {
 

@@ -1,5 +1,6 @@
 package com.asakibi.genetix.genetics;
 
+import com.asakibi.genetix.item.registry.ItemRegistry;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.Pair;
 
@@ -149,22 +150,21 @@ public enum Trait {
             return base;
         }),
 
-    TOMATO_SELF_SEED_PRODUCTION(new Loci[]{Loci.TOMATO_C},
+    TOMATO_SEED_NUM(new Loci[]{Loci.TOMATO_C},
         locus -> {
             int c = locus.get(Loci.TOMATO_C);
             return 2 - c;
         }),
 
-    TOMATO_HYBRID_SEED_PRODUCTION(new Loci[]{Loci.TOMATO_C},
-        locus -> {
-            int c = locus.get(Loci.TOMATO_C);
-            return c + 1;
-        }),
-
     TOMATO_TYPE(new Loci[]{Loci.TOMATO_D},
         locus -> {
             int d = locus.get(Loci.TOMATO_D);
-            return d;
+            return switch (d) {
+                case 0 -> ItemRegistry.YELLOW_TOMATO;
+                case 1 -> ItemRegistry.ORANGE_TOMATO;
+                case 2 -> ItemRegistry.PINK_TOMATO;
+                default -> ItemRegistry.RED_TOMATO;
+            };
         }),
 
     GARLIC_PRODUCTION(new Loci[]{Loci.GARLIC_A, Loci.GARLIC_B, Loci.GARLIC_C},
@@ -196,10 +196,19 @@ public enum Trait {
         return base;
     }),
 
+    GARLIC_SEED_NUM(new Loci[]{Loci.GARLIC_C},
+        locus -> {
+            int c = locus.get(Loci.GARLIC_C);
+            return 2 - c;
+        }),
+
     GARLIC_TYPE(new Loci[]{Loci.GARLIC_D},
         locus -> {
             int d = locus.get(Loci.GARLIC_D);
-            return d;
+            return switch (d) {
+                case 0 -> ItemRegistry.PURPLE_GARLIC;
+                default -> ItemRegistry.WHITE_GARLIC;
+            };
         });
 
     private final List<Loci> POLYGENES;

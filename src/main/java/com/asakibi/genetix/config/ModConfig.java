@@ -11,4 +11,7 @@ public class ModConfig extends Config {
     @Transitive
     private final GeneticVariationConfig geneticVariationConfig = new GeneticVariationConfig();
 
+    @Transitive
+    private final PlantConfig plantConfig = new PlantConfig();
+
 }

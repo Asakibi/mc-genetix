@@ -18,12 +18,6 @@ public class NaturalMutationConfig implements ConfigGroup {
     @ConfigEntry.BoundedDouble(min = 0.0, max = 1.0)
     public static double overall_override_mutation_factor = 0.3;
 
-//    @ConfigEntry.Boolean(trueKey = "1", falseKey = "0")
-//    public static boolean species_override = false;
-//
-//    @ConfigEntry.BoundedDouble(min = 0.0, max = 1.0)
-//    public static double species_override_mutation_factor = 1.0;
-
     @Transitive
     @ConfigEntries(includeAll = true)
     public static class Sheep implements ConfigGroup {

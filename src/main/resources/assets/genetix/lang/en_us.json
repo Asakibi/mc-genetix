@@ -3,15 +3,20 @@
   "itemGroup.genetix.tools": "Genetix - Tools",
   "itemGroup.genetix.food": "Genetix - Food",
 
-  "item.genetix.animal_cotton_swab": "Animal Cotton Swab",
-  "item.genetix.animal_cotton_swab.tooltip.null": "§o§7No data§r",
-  "item.genetix.animal_cotton_swab.tooltip.no_structure": "§o§7No entity§r",
-  "item.genetix.animal_cotton_swab.tooltip.no_chromosomes": "§o§7No chromosomes§r",
+  "item.genetix.animal_genotyping_cotton_swab": "Animal Cotton Swab",
+  "item.genetix.animal_genotyping_cotton_swab.tooltip.null": "§o§7No data§r",
+  "item.genetix.animal_genotyping_cotton_swab.tooltip.no_structure": "§o§7No entity§r",
+  "item.genetix.animal_genotyping_cotton_swab.tooltip.no_chromosomes": "§o§7No chromosomes§r",
 
-  "item.genetix.plant_cotton_swab": "Plant Cotton Swab",
-  "item.genetix.plant_cotton_swab.tooltip.null": "§o§7No data§r",
-  "item.genetix.plant_cotton_swab.tooltip.no_structure": "§o§7No plant§r",
-  "item.genetix.plant_cotton_swab.tooltip.no_chromosomes": "§o§7No chromosomes§r",
+  "item.genetix.plant_genotyping_cotton_swab": "Plant Cotton Swab",
+  "item.genetix.plant_genotyping_cotton_swab.tooltip.null": "§o§7No data§r",
+  "item.genetix.plant_genotyping_cotton_swab.tooltip.no_structure": "§o§7No plant§r",
+  "item.genetix.plant_genotyping_cotton_swab.tooltip.no_chromosomes": "§o§7No chromosomes§r",
+
+  "item.genetix.cotton_swab": "Cotton Swab",
+  "item.genetix.cotton_swab.tooltip.null": "§o§7No data§r",
+  "item.genetix.cotton_swab.tooltip.structure.tomato": "Tomato",
+  "item.genetix.cotton_swab.tooltip.structure.garlic": "Garlic",
 
   "item.genetix.flour": "Flour",
   "item.genetix.dough": "Dough",
@@ -54,6 +59,10 @@
   "item.genetix.orange_tomato": "Orange Tomato",
   "item.genetix.yellow_tomato": "Yellow Tomato",
   "item.genetix.tomato_seeds": "Tomato Seeds",
+
+  "item.genetix.white_garlic": "White Garlic",
+  "item.genetix.purple_garlic": "Purple Garlic",
+  "item.genetix.garlic_seeds": "Garlic Seeds",
 
   "entity.genetix.sheep": "Sheep"
 }

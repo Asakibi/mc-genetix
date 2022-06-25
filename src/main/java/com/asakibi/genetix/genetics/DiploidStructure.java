@@ -1,7 +1,5 @@
 package com.asakibi.genetix.genetics;
 
-import org.checkerframework.checker.units.qual.C;
-
 import java.util.*;
 
 public enum DiploidStructure {
@@ -27,8 +25,7 @@ public enum DiploidStructure {
         ChromosomeStructure.TOMATO_2
     }, new Trait[]{
         Trait.TOMATO_PRODUCTION,
-        Trait.TOMATO_SELF_SEED_PRODUCTION,
-        Trait.TOMATO_HYBRID_SEED_PRODUCTION,
+        Trait.TOMATO_SEED_NUM,
         Trait.TOMATO_TYPE
     }),
 
@@ -37,6 +34,7 @@ public enum DiploidStructure {
         ChromosomeStructure.GARLIC_2
     }, new Trait[]{
         Trait.GARLIC_PRODUCTION,
+        Trait.GARLIC_SEED_NUM,
         Trait.GARLIC_TYPE
     });
 

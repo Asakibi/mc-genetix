@@ -83,16 +83,6 @@ public class Diploid {
         return trait.getValue(genes);
     }
 
-    // Get all values of traits of this diploid.
-    public Map<Trait, Object> computeTraits() {
-        return DIPLOID_STRUCTURE.getTraits().stream().collect(
-            Collectors.toMap(
-                e -> e,
-                this::computeTrait
-            )
-        );
-    }
-
     // Get the value of the loci.
     public Integer getGene(Loci loci) {
         ChromosomeStructure chromosomeStructure = DIPLOID_STRUCTURE.getChromosomeStructureByLoci(loci);

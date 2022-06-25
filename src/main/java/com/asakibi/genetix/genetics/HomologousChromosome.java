@@ -3,7 +3,6 @@ package com.asakibi.genetix.genetics;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.Pair;
 import net.minecraft.util.math.random.Random;
-import org.checkerframework.checker.units.qual.C;
 
 public class HomologousChromosome {
 
@@ -106,7 +105,7 @@ public class HomologousChromosome {
      *
      *  All factors should range from (>=) 0 to (<=) 1.
      */
-    public Chromosome meiosis(Random random) {
+    private Chromosome meiosis(Random random) {
 
         boolean r = random.nextBoolean();
 
@@ -121,7 +120,7 @@ public class HomologousChromosome {
         return cn;
     }
 
-    public Pair<Chromosome, Chromosome> mitosis(Random random) {
+    private Pair<Chromosome, Chromosome> mitosis(Random random) {
 
         Chromosome c1 = new Chromosome(CHROMOSOME1);
         Chromosome c2 = new Chromosome(CHROMOSOME2);
