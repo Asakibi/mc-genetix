@@ -4,6 +4,7 @@ import com.asakibi.genetix.block.registry.BlockRegistry;
 import com.asakibi.genetix.entity.EntityRegistry;
 import com.asakibi.genetix.entity.model.GenetixSheepEntityModel;
 import com.asakibi.genetix.entity.renderer.GenetixSheepEntityRenderer;
+import com.asakibi.genetix.render.CustomColorProviderRegistry;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -32,14 +33,14 @@ public class ModClient implements ClientModInitializer {
 
         EntityModelLayerRegistry.registerModelLayer(MODEL_GENETIX_SHEEP_LAYER, GenetixSheepEntityModel::getTexturedModelData);
 
-        BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), BlockRegistry.TOMATO_CROP_SEEDS);
-        BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), BlockRegistry.TOMATO_CROP_RED);
-        BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), BlockRegistry.TOMATO_CROP_PINK);
-        BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), BlockRegistry.TOMATO_CROP_ORANGE);
-        BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), BlockRegistry.TOMATO_CROP_YELLOW);
+        BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), BlockRegistry.TOMATO_CROP);
 
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), BlockRegistry.GARLIC_CROP_WHITE);
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), BlockRegistry.GARLIC_CROP_PURPLE);
-        BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), BlockRegistry.GARLIC_CROP_SEEDS);
+
+        BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), BlockRegistry.SCALLION_CROP);
+        BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), BlockRegistry.SCALLION_CROP_SEED);
+
+        CustomColorProviderRegistry.initialize();
     }
 }

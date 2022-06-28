@@ -1,6 +1,6 @@
 package com.asakibi.genetix.block.entity.impl;
 
-import com.asakibi.genetix.block.entity.UnsowableFruitAndSeedCropEnity;
+import com.asakibi.genetix.block.entity.SowableFruitAndSeedsCropEntity;
 import com.asakibi.genetix.block.registry.BlockEntityRegistry;
 import com.asakibi.genetix.config.PlantConfig;
 import com.asakibi.genetix.genetics.Diploid;
@@ -12,34 +12,34 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.util.math.BlockPos;
 
-public class TomatoCropEntity extends UnsowableFruitAndSeedCropEnity {
+public class ScallionCropEntity extends SowableFruitAndSeedsCropEntity {
 
-    public TomatoCropEntity(BlockPos pos, BlockState state) {
-        super(BlockEntityRegistry.TOMATO_CROP_ENTITY, pos, state, DiploidStructure.TOMATO);
+    public ScallionCropEntity(BlockPos pos, BlockState state) {
+        super(BlockEntityRegistry.SCALLION_CROP_ENTITY, pos, state, DiploidStructure.SCALLION);
     }
 
     @Override
     protected ItemConvertible getSeedsItem() {
-        return ItemRegistry.TOMATO_SEEDS;
+        return ItemRegistry.SCALLION_SEEDS;
     }
 
     @Override
     protected Item getFruitType(Diploid child) {
-        return (Item) child.computeTrait(Trait.TOMATO_TYPE);
+        return ItemRegistry.SCALLION;
     }
 
     @Override
     protected int getTotalFruitNum(Diploid parent) {
-        return (int) parent.computeTrait(Trait.TOMATO_PRODUCTION);
+        return (int) parent.computeTrait(Trait.SCALLION_PRODUCTION);
     }
 
     @Override
     protected int getTotalSeedNum(Diploid parent) {
-        return (int) parent.computeTrait(Trait.TOMATO_SEED_NUM);
+        return (int) parent.computeTrait(Trait.SCALLION_SEED_NUM);
     }
 
     @Override
     protected boolean isFruitHereditary() {
-        return PlantConfig.HeredityFruit.tomato;
+        return PlantConfig.HeredityFruit.scallion;
     }
 }

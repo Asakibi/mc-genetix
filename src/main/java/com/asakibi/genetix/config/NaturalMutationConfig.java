@@ -90,4 +90,15 @@ public class NaturalMutationConfig implements ConfigGroup {
         @ConfigEntry.BoundedDouble(min = 0.0, max = 1.0)
         public static double d = 0.3;
     }
+
+    @Transitive
+    @ConfigEntries(includeAll = true)
+    public static class Scallion implements ConfigGroup {
+
+        @ConfigEntry.BoundedDouble(min = 0.0, max = 1.0)
+        public static double a = 0.3;
+
+        @ConfigEntry.BoundedDouble(min = 0.0, max = 1.0)
+        public static double b = 0.3;
+    }
 }

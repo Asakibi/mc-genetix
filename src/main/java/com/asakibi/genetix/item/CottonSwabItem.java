@@ -1,6 +1,7 @@
 package com.asakibi.genetix.item;
 
 import com.asakibi.genetix.Mod;
+import com.asakibi.genetix.block.entity.FruitAndSeedsCropEntity;
 import com.asakibi.genetix.block.entity.GenetixCropEntity;
 import com.asakibi.genetix.config.PlantConfig;
 import com.asakibi.genetix.genetics.Diploid;
@@ -35,80 +36,18 @@ public class CottonSwabItem extends Item {
 
     @Override
     public ActionResult useOnBlock(ItemUsageContext context) {
-//        World world = context.getWorld();
-//        if (!world.isClient) {
-//            BlockPos pos = context.getBlockPos();
-//            BlockEntity blockEntity = world.getBlockEntity(pos);
-//            if (blockEntity instanceof GenetixCropEntity) {
-//                BlockState blockState = context.getWorld().getBlockState(pos);
-//                int age = blockState.get(CropBlock.AGE);
-//
-//                if (age >= 4 && age <= 6) {
-//                    ItemStack thisSwab = context.getStack();
-//                    GenetixCropEntity cropEntity = (GenetixCropEntity) blockEntity;
-//                    Random random = context.getWorld().random;
-//
-//                    if (isNew(thisSwab)) {
-//                        thisSwab.decrement(1);
-//
-//                        ItemStack newItemStack = new ItemStack(this);
-//
-//                        int capacity = PlantConfig.cotton_swab_capacity;
-//                        NbtCompound info = new NbtCompound();
-//                        info.putInt("capacity", capacity);
-//                        info.putInt("num", capacity);
-//                        info.putString("diploid_structure", cropEntity.getDiploid().getLowerCaseStructureName());
-//
-//                        NbtCompound parents = new NbtCompound();
-//
-//                        Diploid diploid = cropEntity.getDiploid();
-//                        for (int i = 0; i < PlantConfig.cotton_swab_capacity; i++) {
-//                            parents.put(String.valueOf(i + 1), diploid.toNBT());
-//                        }
-//
-//                        newItemStack.setSubNbt("parents", parents);
-//                        newItemStack.setSubNbt("info", info);
-//
-//                        ItemEntity itemEntity = new ItemEntity(world, (double)pos.getX() + 0.5, (double)pos.getY() + 0.5, (double)pos.getZ() + 0.5, newItemStack);
-//                        itemEntity.setToDefaultPickupDelay();
-//                        world.spawnEntity(itemEntity);
-//                    } else {
-//                        NbtCompound info = thisSwab.getSubNbt("info");
-//                        int num = info.getInt("num");
-//                        boolean diploidStructures = cropEntity.getDiploid().getLowerCaseStructureName()
-//                            .equals(info.getString("diploid_structure"));
-//
-//                        if (num > 0 && diploidStructures) {
-//                            NbtCompound parents = thisSwab.getSubNbt("parents");
-//
-//                            int flag = cropEntity.getRemainingParentNum();
-//                            while (flag > 0 && num > 0) {
-//                                String stringIndex = String.valueOf(num);
-//                                NbtCompound parent = parents.getCompound(stringIndex);
-//
-//                                flag = cropEntity.hybrid(new Diploid(parent), 1, random);
-//                                num--;
-//                                info.putInt("num", num);
-//                                parents.remove(stringIndex);
-//                            }
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//        return super.useOnBlock(context);
 
         World world = context.getWorld();
         if (!world.isClient) {
             BlockPos pos = context.getBlockPos();
             BlockEntity blockEntity = world.getBlockEntity(pos);
-            if (blockEntity instanceof GenetixCropEntity) {
+            if (blockEntity instanceof FruitAndSeedsCropEntity) {
                 BlockState blockState = context.getWorld().getBlockState(pos);
                 int age = blockState.get(CropBlock.AGE);
 
                 if (age >= 4 && age <= 6) {
                     ItemStack thisSwab = context.getStack();
-                    GenetixCropEntity cropEntity = (GenetixCropEntity) blockEntity;
+                    FruitAndSeedsCropEntity cropEntity = (FruitAndSeedsCropEntity) blockEntity;
                     Random random = context.getWorld().random;
 
                     if (isNew(thisSwab)) {
@@ -136,12 +75,13 @@ public class CottonSwabItem extends Item {
                         NbtList parents = thisSwab.getNbt().getList("parents", NbtCompound.COMPOUND_TYPE);
 
                         if (num > 0 && diploidStructures) {
-                            int flag = cropEntity.getRemainingParentNum();
+                            int flag = cropEntity.countVacancies();
                             while (flag > 0 && num > 0) {
                                 NbtCompound parent = parents.getCompound(num - 1);
 
-                                flag = cropEntity.hybrid(new Diploid(parent), 1, random);
+                                cropEntity.addParents(new Diploid(parent), 1);
                                 parents.remove(num - 1);
+                                flag = cropEntity.countVacancies();
                                 num--;
                             }
 

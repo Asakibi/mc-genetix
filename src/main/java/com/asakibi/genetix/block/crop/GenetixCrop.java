@@ -16,6 +16,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.LinkedList;
 import java.util.List;
 
 public abstract class GenetixCrop extends CropBlock implements BlockEntityProvider {
@@ -47,6 +48,9 @@ public abstract class GenetixCrop extends CropBlock implements BlockEntityProvid
                 } else {
                     genetixCropEntity.generateDiploid(world.random, true);
                 }
+
+                Item sowedItem = itemStack.getItem();
+                genetixCropEntity.setSowedItem(sowedItem);
             }
         }
 
@@ -57,18 +61,22 @@ public abstract class GenetixCrop extends CropBlock implements BlockEntityProvid
     public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
         if (!world.isClient) {
             BlockEntity blockEntity = world.getBlockEntity(pos);
+
             if (blockEntity instanceof GenetixCropEntity genetixCropEntity) {
 
+                // get the crop's age
                 BlockState blockState = world.getBlockState(pos);
                 int age = blockState.get(CropBlock.AGE);
 
-                List<ItemStack> items;
+                List<ItemStack> items = List.of();
 
-                items = switch (age) {
-                    case 4, 5, 6 -> genetixCropEntity.getSeedsAndProductsUnripe(world.random);
-                    case 7 -> genetixCropEntity.getSeedsAndProductsRipe(world.random);
-                    default -> genetixCropEntity.getSeedsAndProductsYoung(world.random);
-                };
+                if (age == 7) {
+                    items = new LinkedList<>();
+                    items.addAll(genetixCropEntity.getSowableDroppings(world.random));
+                    items.addAll(genetixCropEntity.getUnsowableDroppings(world.random));
+                } else if (age >= 0 && age <= 3) {
+                    items = List.of(genetixCropEntity.returnSowable());
+                }
 
                 items.forEach(itemStack -> {
                     ItemEntity itemEntity = new ItemEntity(world, (double)pos.getX() + 0.5, (double)pos.getY() + 0.5, (double)pos.getZ() + 0.5, itemStack);

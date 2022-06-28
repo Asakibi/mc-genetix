@@ -196,12 +196,6 @@ public enum Trait {
         return base;
     }),
 
-    GARLIC_SEED_NUM(new Loci[]{Loci.GARLIC_C},
-        locus -> {
-            int c = locus.get(Loci.GARLIC_C);
-            return 2 - c;
-        }),
-
     GARLIC_TYPE(new Loci[]{Loci.GARLIC_D},
         locus -> {
             int d = locus.get(Loci.GARLIC_D);
@@ -209,6 +203,24 @@ public enum Trait {
                 case 0 -> ItemRegistry.PURPLE_GARLIC;
                 default -> ItemRegistry.WHITE_GARLIC;
             };
+        }),
+
+    SCALLION_PRODUCTION(new Loci[]{Loci.SCALLION_A},
+        locus -> {
+            int a = locus.get(Loci.SCALLION_A);
+
+            int base = 3;
+
+            return a == 1 ? base + 2 : base;
+        }),
+
+    SCALLION_SEED_NUM(new Loci[]{Loci.SCALLION_B},
+        locus -> {
+            int a = locus.get(Loci.SCALLION_B);
+
+            int base = 3;
+
+            return a == 1 ? base + 2 : base;
         });
 
     private final List<Loci> POLYGENES;

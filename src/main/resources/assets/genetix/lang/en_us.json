@@ -18,6 +18,9 @@
   "item.genetix.cotton_swab.tooltip.structure.tomato": "Tomato",
   "item.genetix.cotton_swab.tooltip.structure.garlic": "Garlic",
 
+  "item.genetix.seed_bundle": "Seed Bundle",
+  "item.genetix.product_bundle": "Product Bundle",
+
   "item.genetix.flour": "Flour",
   "item.genetix.dough": "Dough",
   "item.genetix.potato_starch": "Potato Starch",

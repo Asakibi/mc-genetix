@@ -22,7 +22,10 @@ public enum ChromosomeStructure {
     TOMATO_2("2", new Loci[]{Loci.TOMATO_D}, CrossoverConfig.Tomato.tomato_2),
 
     GARLIC_1("1", new Loci[]{Loci.GARLIC_A, Loci.GARLIC_B, Loci.GARLIC_C}, CrossoverConfig.Garlic.garlic_1),
-    GARLIC_2("2", new Loci[]{Loci.GARLIC_D}, CrossoverConfig.Garlic.garlic_2);
+    GARLIC_2("2", new Loci[]{Loci.GARLIC_D}, CrossoverConfig.Garlic.garlic_2),
+
+    SCALLION1("1", new Loci[]{Loci.SCALLION_A}, CrossoverConfig.Scallion.scallion_1),
+    SCALLION2("2", new Loci[]{Loci.SCALLION_B}, CrossoverConfig.Scallion.scallion_2);
 
     private final String SHORT_NAME;
     private final LinkedHashSet<Loci> LOCUS;

@@ -74,4 +74,16 @@ public class CrossoverConfig implements ConfigGroup {
         public static double garlic_2 = 0.3;
 
     }
+
+    @Transitive
+    @ConfigEntries(includeAll = true)
+    public static class Scallion implements ConfigGroup {
+
+        @ConfigEntry.BoundedDouble(min = 0.0, max = 1.0)
+        public static double scallion_1 = 0.3;
+
+        @ConfigEntry.BoundedDouble(min = 0.0, max = 1.0)
+        public static double scallion_2 = 0.3;
+
+    }
 }

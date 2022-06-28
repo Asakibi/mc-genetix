@@ -2,10 +2,7 @@ package com.asakibi.genetix.item.registry;
 
 import com.asakibi.genetix.Mod;
 import com.asakibi.genetix.block.registry.BlockRegistry;
-import com.asakibi.genetix.item.AnimalGenotypingCottonSwabItem;
-import com.asakibi.genetix.item.CottonSwabItem;
-import com.asakibi.genetix.item.PlantGenotypingCottonSwabItem;
-import com.asakibi.genetix.item.SeedBundleItem;
+import com.asakibi.genetix.item.*;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.block.CropBlock;
 import net.minecraft.client.item.ModelPredicateProviderRegistry;
@@ -18,20 +15,21 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
-import java.util.Optional;
 
 public class ItemRegistry {
-    public static final Item TEST = new Item(new FabricItemSettings().group(GroupRegistry.DEFAULT_GROUP)) {
+    public static final Item TEST = new Item(new FabricItemSettings().group(GroupRegistry.DEFAULT)) {
         @Override
         public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
             tooltip.add(Text.translatable("item.genetix.test.tooltip"));
         }
     };
 
-    public static final Item ANIMAL_GENOTYPING_COTTON_SWAB = new AnimalGenotypingCottonSwabItem(new FabricItemSettings().group(GroupRegistry.TOOLS_GROUP));
-    public static final Item PLANT_GENOTYPING_COTTON_SWAB = new PlantGenotypingCottonSwabItem(new FabricItemSettings().group(GroupRegistry.TOOLS_GROUP));
-    public static final Item COTTON_SWAB = new CottonSwabItem(new FabricItemSettings().group(GroupRegistry.TOOLS_GROUP).maxCount(1));
-    public static final Item SEED_BUNDLE = new SeedBundleItem(new Item.Settings().maxCount(1).group(createEmptyOptional(GroupRegistry.DEFAULT_GROUP).orElse(null)));
+
+    public static final Item SEED_BUNDLE = new SeedBundleItem(new Item.Settings().maxCount(1).group(GroupRegistry.TOOLS));
+    public static final Item PRODUCT_BUNDLE = new ProductBundleItem(new Item.Settings().maxCount(1).group(GroupRegistry.TOOLS));
+    public static final Item ANIMAL_GENOTYPING_COTTON_SWAB = new AnimalGenotypingCottonSwabItem(new FabricItemSettings().group(GroupRegistry.TOOLS));
+    public static final Item PLANT_GENOTYPING_COTTON_SWAB = new PlantGenotypingCottonSwabItem(new FabricItemSettings().group(GroupRegistry.TOOLS));
+    public static final Item COTTON_SWAB = new CottonSwabItem(new FabricItemSettings().group(GroupRegistry.TOOLS).maxCount(1));
 
     public static final Item FLOUR
         = food(1, 0.2f, "flour");
@@ -100,22 +98,25 @@ public class ItemRegistry {
         = food(3, 4.2f, "fish_ball");
 
     public static final Item TOMATO_SEEDS
-        = seed(BlockRegistry.TOMATO_CROP_SEEDS, "tomato_seeds");
+        = seed(BlockRegistry.TOMATO_CROP, "tomato_seeds");
     public static final Item RED_TOMATO
-        = seedAsFood(1, 0.6f, BlockRegistry.TOMATO_CROP_RED, "red_tomato");
+        = food(1, 0.6f, "red_tomato");
     public static final Item PINK_TOMATO
-        = seedAsFood(1, 0.6f, BlockRegistry.TOMATO_CROP_PINK, "pink_tomato");
+        = food(1, 0.6f, "pink_tomato");
     public static final Item ORANGE_TOMATO
-        = seedAsFood(1, 0.6f, BlockRegistry.TOMATO_CROP_ORANGE, "orange_tomato");
+        = food(1, 0.6f, "orange_tomato");
     public static final Item YELLOW_TOMATO
-        = seedAsFood(1, 0.6f, BlockRegistry.TOMATO_CROP_YELLOW, "yellow_tomato");
+        = food(1, 0.6f, "yellow_tomato");
 
-    public static final Item GARLIC_SEEDS
-        = seed(BlockRegistry.GARLIC_CROP_SEEDS, "garlic_seeds");
     public static final Item WHITE_GARLIC
         = seedAsFood(1, 0.6f, BlockRegistry.GARLIC_CROP_WHITE, "white_garlic");
     public static final Item PURPLE_GARLIC
         = seedAsFood(1, 0.6f, BlockRegistry.GARLIC_CROP_PURPLE, "purple_garlic");
+
+    public static final Item SCALLION
+        = seedAsFood(1, 0.6f, BlockRegistry.SCALLION_CROP, "scallion");
+    public static final Item SCALLION_SEEDS
+        = seed(BlockRegistry.SCALLION_CROP_SEED, "scallion_seeds");
 
 
     private static void register(Item item, String path) {
@@ -126,7 +127,7 @@ public class ItemRegistry {
         Item item = new Item(
             new FabricItemSettings()
                 .food(new FoodComponent.Builder().hunger(hunger).saturationModifier(saturation).build())
-                .group(GroupRegistry.FOOD_GROUP)) {
+                .group(GroupRegistry.FOOD)) {
             @Override
             public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
                 tooltip.add(Text.translatable("item." + Mod.NAME + "." + path + ".tooltip"));
@@ -139,7 +140,7 @@ public class ItemRegistry {
     private static Item seed(CropBlock cropBlock, String path) {
         Item item = new AliasedBlockItem(cropBlock,
             new FabricItemSettings()
-                .group(GroupRegistry.FOOD_GROUP)) {
+                .group(GroupRegistry.FOOD)) {
             @Override
             public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
                 tooltip.add(Text.translatable("item." + Mod.NAME + "."+ path + ".tooltip"));
@@ -154,7 +155,7 @@ public class ItemRegistry {
         Item item = new AliasedBlockItem(cropBlock,
             new FabricItemSettings()
                 .food(new FoodComponent.Builder().hunger(hunger).saturationModifier(saturation).build())
-                .group(GroupRegistry.FOOD_GROUP)) {
+                .group(GroupRegistry.FOOD)) {
             @Override
             public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
                 tooltip.add(Text.translatable("item." + Mod.NAME + "."+ path + ".tooltip"));
@@ -170,12 +171,10 @@ public class ItemRegistry {
         register(PLANT_GENOTYPING_COTTON_SWAB, "plant_genotyping_cotton_swab");
         register(COTTON_SWAB, "cotton_swab");
         register(SEED_BUNDLE, "seed_bundle");
+        register(PRODUCT_BUNDLE, "product_bundle");
 
         // model predicate provider
-        ModelPredicateProviderRegistry.register(SEED_BUNDLE, new Identifier("filled"), (stack, world, entity, seed) -> SeedBundleItem.getAmountFilled(stack));
-    }
-
-    private static <T> Optional<T> createEmptyOptional(T of) {
-        return Optional.empty();
+        ModelPredicateProviderRegistry.register(SEED_BUNDLE, new Identifier("filled"), (stack, world, entity, seed) -> GenetixBundleItem.getAmountFilled(stack));
+        ModelPredicateProviderRegistry.register(PRODUCT_BUNDLE, new Identifier("filled"), (stack, world, entity, seed) -> GenetixBundleItem.getAmountFilled(stack));
     }
 }

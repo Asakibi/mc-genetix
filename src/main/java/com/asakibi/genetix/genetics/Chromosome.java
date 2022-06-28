@@ -100,7 +100,7 @@ public class Chromosome {
         if (GeneticVariationConfig.hereditary_mutation_on) {
             if (HereditaryMutationConfig.overall_override_on) {
                 GENES.replaceAll((loci, value) -> {
-                    boolean flag = getRandomBoolean(random, HereditaryMutationConfig.overall_override_mutation_factor);
+                    boolean flag = getRandomBoolean(random, HereditaryMutationConfig.overall_basic_mutation_factor);
                     if (flag) {
                         int newValue = loci.getMutatedValue(random, getValue(loci));
                         logHereditaryMutation(loci, value, newValue);

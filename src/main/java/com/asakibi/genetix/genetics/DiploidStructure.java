@@ -1,5 +1,7 @@
 package com.asakibi.genetix.genetics;
 
+import org.checkerframework.checker.units.qual.C;
+
 import java.util.*;
 
 public enum DiploidStructure {
@@ -34,8 +36,15 @@ public enum DiploidStructure {
         ChromosomeStructure.GARLIC_2
     }, new Trait[]{
         Trait.GARLIC_PRODUCTION,
-        Trait.GARLIC_SEED_NUM,
         Trait.GARLIC_TYPE
+    }),
+
+    SCALLION(new ChromosomeStructure[]{
+        ChromosomeStructure.SCALLION1,
+        ChromosomeStructure.SCALLION2
+    }, new Trait[]{
+        Trait.SCALLION_PRODUCTION,
+        Trait.SCALLION_SEED_NUM
     });
 
     private final LinkedHashSet<ChromosomeStructure> CHROMOSOME_STRUCTURES;
@@ -62,10 +71,6 @@ public enum DiploidStructure {
 
     public Set<ChromosomeStructure> getChromosomeStructures() {
         return CHROMOSOME_STRUCTURES;
-    }
-
-    public Set<Trait> getTraits() {
-        return TRAITS;
     }
 
     @Override

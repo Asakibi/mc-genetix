@@ -183,6 +183,26 @@ public enum Loci {
         Mutators.MAP_MOD,
         HereditaryMutationConfig.Garlic.d,
         NaturalMutationConfig.Garlic.d,
+        DeterminantMapping.COMBINATION_MAX),
+
+    SCALLION_A(
+        "a",
+        1,
+        Generator.DEFAULT,
+        Generator.ZERO,
+        Mutators.MAP_MOD,
+        HereditaryMutationConfig.Scallion.a,
+        NaturalMutationConfig.Scallion.a,
+        DeterminantMapping.COMBINATION_MAX),
+
+    SCALLION_B(
+        "b",
+        1,
+        Generator.DEFAULT,
+        Generator.ZERO,
+        Mutators.MAP_MOD,
+        HereditaryMutationConfig.Scallion.b,
+        NaturalMutationConfig.Scallion.b,
         DeterminantMapping.COMBINATION_MAX);
 
     private final String SHORT_NAME;
