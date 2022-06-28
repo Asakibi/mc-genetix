@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "bottom": "genetix:block/bay_planks",
+    "side": "genetix:block/bay_planks",
+    "top": "genetix:block/bay_planks"
+  }
+}

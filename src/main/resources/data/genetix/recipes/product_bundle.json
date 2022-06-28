@@ -1,0 +1,36 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "key": {
+        "S": {
+            "item": "minecraft:string"
+        },
+        "L": [
+            {
+                "item": "minecraft:leather"
+            },
+            {
+                "item": "minecraft:rabbit_hide"
+            }
+        ],
+        "D": [
+            {
+                "item": "minecraft:orange_dye"
+            },
+            {
+                "item": "minecraft:yellow_dye"
+            },
+            {
+                "item": "minecraft:brown_dye"
+            }
+        ]
+    },
+    "pattern": [
+        "SLS",
+        "LDL",
+        "LLL"
+    ],
+    "result": {
+        "item": "genetix:seed_bundle",
+        "count": 1
+    }
+}

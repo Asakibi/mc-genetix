@@ -32,7 +32,7 @@ public class ConfiguredFeatureRegistry {
             new RandomFeatureConfig(List.of(new RandomFeatureEntry(BAY_CHECKED, 0.5f)),
             BAY_CHECKED));
 
-    public static void register() {
-        System.out.print("genetix::ConfiguredFeatureRegistry");
-    }
+//    public static void register() {
+//        System.out.print("genetix::ConfiguredFeatureRegistry");
+//    }
 }

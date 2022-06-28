@@ -24,13 +24,6 @@ public class ItemRegistry {
         }
     };
 
-
-    public static final Item SEED_BUNDLE = new SeedBundleItem(new Item.Settings().maxCount(1).group(GroupRegistry.TOOLS));
-    public static final Item PRODUCT_BUNDLE = new ProductBundleItem(new Item.Settings().maxCount(1).group(GroupRegistry.TOOLS));
-    public static final Item ANIMAL_GENOTYPING_COTTON_SWAB = new AnimalGenotypingCottonSwabItem(new FabricItemSettings().group(GroupRegistry.TOOLS));
-    public static final Item PLANT_GENOTYPING_COTTON_SWAB = new PlantGenotypingCottonSwabItem(new FabricItemSettings().group(GroupRegistry.TOOLS));
-    public static final Item COTTON_SWAB = new CottonSwabItem(new FabricItemSettings().group(GroupRegistry.TOOLS).maxCount(1));
-
     public static final Item FLOUR
         = food(1, 0.2f, "flour");
     public static final Item DOUGH
@@ -164,6 +157,12 @@ public class ItemRegistry {
         register(item, path);
         return item;
     }
+
+    public static final Item SEED_BUNDLE = new SeedBundleItem(new FabricItemSettings().maxCount(1).group(GroupRegistry.TOOLS));
+    public static final Item PRODUCT_BUNDLE = new ProductBundleItem(new FabricItemSettings().maxCount(1).group(GroupRegistry.TOOLS));
+    public static final Item ANIMAL_GENOTYPING_COTTON_SWAB = new AnimalGenotypingCottonSwabItem(new FabricItemSettings().group(GroupRegistry.TOOLS));
+    public static final Item PLANT_GENOTYPING_COTTON_SWAB = new PlantGenotypingCottonSwabItem(new FabricItemSettings().group(GroupRegistry.TOOLS));
+    public static final Item COTTON_SWAB = new CottonSwabItem(new FabricItemSettings().group(GroupRegistry.TOOLS).maxCount(1));
 
     public static void registerAll() {
         register(TEST, "test");

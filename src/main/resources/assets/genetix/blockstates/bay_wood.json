@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "genetix:block/bay_wood",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "genetix:block/bay_wood"
+    },
+    "axis=z": {
+      "model": "genetix:block/bay_wood",
+      "x": 90
+    }
+  }
+}

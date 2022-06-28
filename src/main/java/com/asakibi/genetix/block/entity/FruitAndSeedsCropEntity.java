@@ -1,8 +1,8 @@
 package com.asakibi.genetix.block.entity;
 
-import com.asakibi.genetix.config.PlantConfig;
 import com.asakibi.genetix.genetics.Diploid;
 import com.asakibi.genetix.genetics.DiploidStructure;
+import com.asakibi.genetix.genetics.Gamete;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.item.Item;
@@ -11,19 +11,22 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.nbt.NbtList;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.random.Random;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public abstract class FruitAndSeedsCropEntity extends GenetixCropEntity {
+
+
+    protected final Map<NbtCompound, Integer> gametes;
+    protected final boolean SELF = true;
+
     public FruitAndSeedsCropEntity(BlockEntityType<?> type, BlockPos pos, BlockState state, DiploidStructure diploidStructure) {
         super(type, pos, state, diploidStructure);
-        parents = new HashMap<>();
+        gametes = new HashMap<>();
     }
-
-    protected final Map<NbtCompound, Integer> parents;
-    protected final boolean SELF = true;
 
     protected abstract ItemConvertible getSeedsItem();
     protected abstract Item getFruitType(Diploid child);
@@ -36,30 +39,30 @@ public abstract class FruitAndSeedsCropEntity extends GenetixCropEntity {
     public final void readNbt(NbtCompound nbt) {
         super.readNbt(nbt);
 
-        NbtList parents = nbt.getList("parents", NbtElement.COMPOUND_TYPE);
-        parents.forEach(parent -> {
-            NbtCompound nbtCompound = (NbtCompound) parent;
-            this.parents.put(nbtCompound.getCompound("diploid"), nbtCompound.getInt("num"));
+        NbtList gametes = nbt.getList("gametes", NbtElement.COMPOUND_TYPE);
+        gametes.forEach(gamete -> {
+            NbtCompound nbtCompound = (NbtCompound) gamete;
+            this.gametes.put(nbtCompound.getCompound("gamete"), nbtCompound.getInt("num"));
         });
     }
 
     @Override
     protected final void writeNbt(NbtCompound nbt) {
-        NbtList parents = new NbtList();
-        this.parents.forEach((parent, num) -> {
+        NbtList gametes = new NbtList();
+        this.gametes.forEach((gamete, num) -> {
             NbtCompound nbtCompound = new NbtCompound();
-            nbtCompound.put("diploid", parent);
+            nbtCompound.put("gamete", gamete);
             nbtCompound.putInt("num", num);
-            parents.add(nbtCompound);
+            gametes.add(nbtCompound);
         });
 
-        nbt.put("parents", parents);
+        nbt.put("gametes", gametes);
         super.writeNbt(nbt);
     }
 
-    protected final int countParents() {
+    protected final int countGametes() {
         AtomicInteger total = new AtomicInteger();
-        parents.forEach((key, value) -> {
+        gametes.forEach((key, value) -> {
             int num = value;
             total.addAndGet(num);
         });
@@ -67,12 +70,12 @@ public abstract class FruitAndSeedsCropEntity extends GenetixCropEntity {
     }
 
     public final int countVacancies() {
-        int count = countParents();
+        int count = countGametes();
         int d = getTotalSeedNum(diploid) - count;
         return Math.max(d, 0);
     }
 
-    public final void addParents(Diploid diploid, int num) {
+    public final void addGametes(Gamete gamete, int num) {
         if (num <= 0) return;
 
         int count = countVacancies();
@@ -80,9 +83,35 @@ public abstract class FruitAndSeedsCropEntity extends GenetixCropEntity {
 
         num = Math.min(num, count);
 
-        NbtCompound nbtCompound = diploid.toNBT();
+        addGamete(gamete, num);
+        markDirty();
+    }
 
-        parents.put(nbtCompound, num);
+    public final void addGametes(Diploid diploid, int num, Random random) {
+        if (num <= 0) return;
+
+        int count = countVacancies();
+        if (count <= 0) return;
+
+        num = Math.min(num, count);
+
+        for (int i = 0; i < num; i++) {
+            addGamete(new Gamete(diploid, random), 1);
+        }
+
+        markDirty();
+    }
+
+    private final void addGamete(Gamete gamete, int num) {
+        NbtCompound gameteNbt = gamete.toNBT();
+
+        boolean existed = gametes.containsKey(gameteNbt);
+        if (existed) {
+            gametes.put(gameteNbt, gametes.get(gameteNbt) + num);
+        } else {
+            gametes.put(gameteNbt, num);
+        }
+
         markDirty();
     }
 }

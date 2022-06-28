@@ -1,0 +1,6 @@
+{
+    "parent": "genetix:item/product_bundle",
+    "textures": {
+        "layer0": "genetix:item/product_bundle_filled"
+    }
+}

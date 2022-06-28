@@ -13,6 +13,7 @@ import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -63,20 +64,7 @@ public abstract class GenetixCrop extends CropBlock implements BlockEntityProvid
             BlockEntity blockEntity = world.getBlockEntity(pos);
 
             if (blockEntity instanceof GenetixCropEntity genetixCropEntity) {
-
-                // get the crop's age
-                BlockState blockState = world.getBlockState(pos);
-                int age = blockState.get(CropBlock.AGE);
-
-                List<ItemStack> items = List.of();
-
-                if (age == 7) {
-                    items = new LinkedList<>();
-                    items.addAll(genetixCropEntity.getSowableDroppings(world.random));
-                    items.addAll(genetixCropEntity.getUnsowableDroppings(world.random));
-                } else if (age >= 0 && age <= 3) {
-                    items = List.of(genetixCropEntity.returnSowable());
-                }
+                List<ItemStack> items = getDroppings(world.getBlockState(pos), genetixCropEntity, world.random);
 
                 items.forEach(itemStack -> {
                     ItemEntity itemEntity = new ItemEntity(world, (double)pos.getX() + 0.5, (double)pos.getY() + 0.5, (double)pos.getZ() + 0.5, itemStack);
@@ -87,5 +75,20 @@ public abstract class GenetixCrop extends CropBlock implements BlockEntityProvid
         }
 
         super.onBreak(world, pos, state, player);
+    }
+
+    protected List<ItemStack> getDroppings(BlockState blockState, GenetixCropEntity genetixCropEntity, Random random) {
+        int age = blockState.get(CropBlock.AGE);
+
+        List<ItemStack> items = List.of();
+
+        if (age == 7) {
+            items = new LinkedList<>();
+            items.addAll(genetixCropEntity.getSowableDroppings(random));
+            items.addAll(genetixCropEntity.getUnsowableDroppings(random));
+        } else if (age >= 0 && age <= 3) {
+            items = List.of(genetixCropEntity.returnSowable());
+        }
+        return items;
     }
 }

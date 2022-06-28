@@ -1,7 +1,6 @@
 package com.asakibi.genetix.item;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Stream;
 import net.minecraft.client.item.BundleTooltipData;
 import net.minecraft.client.item.TooltipContext;
@@ -73,6 +72,14 @@ public abstract class GenetixBundleItem
             return false;
         }
         ItemStack itemStack = slot.getStack();
+
+        // when the slot is not empty
+        if (!itemStack.isEmpty()) {
+            if (!validate(stack, itemStack)) {
+                return false;
+            }
+        }
+
         if (itemStack.isEmpty()) {
             playRemoveOneSound(player);
             removeFirstStack(stack).ifPresent(removedStack -> addToBundle(stack, slot.insertStack(removedStack)));
@@ -81,6 +88,29 @@ public abstract class GenetixBundleItem
             int j = addToBundle(stack, slot.takeStackRange(itemStack.getCount(), i, player));
             if (j > 0) {
                 playInsertSound(player);
+            }
+        }
+        return true;
+    }
+
+    private boolean validate(ItemStack bundleStack, ItemStack itemStack) {
+        // get the item in the slot
+        Item stackItem = itemStack.getItem();
+
+        // if the item isn't supported by this type of bundle,
+        // do nothing
+        if (!supported(stackItem)) {
+            return false;
+        }
+
+        // get the item in the bundle
+        Optional<Item> bundleFirstItem = getFirstItem(bundleStack);
+
+        // if the items are not in the same category,
+        // do nothing
+        if (bundleFirstItem.isPresent()) {
+            if (!inSameGroup(bundleFirstItem.get(), stackItem)) {
+                return false;
             }
         }
         return true;
@@ -97,6 +127,11 @@ public abstract class GenetixBundleItem
                 cursorStackReference.set(itemStack);
             });
         } else {
+            // when the other item stack is not empty
+            if (!validate(stack, otherStack)) {
+                return false;
+            }
+
             int i = addToBundle(stack, otherStack);
             if (i > 0) {
                 playInsertSound(player);
@@ -148,19 +183,6 @@ public abstract class GenetixBundleItem
         }
         NbtList nbtList = nbtCompound.getList(ITEMS_KEY, NbtElement.COMPOUND_TYPE);
 
-        Item stackItem = stack.getItem();
-        Optional<Item> bundleFirstItem = getFirstItem(bundle);
-
-        if (!supported(stackItem)) {
-            return 0;
-        }
-
-        if (bundleFirstItem.isPresent()) {
-            if (!inSameGroup(bundleFirstItem.get(), stackItem)) {
-                return 0;
-            }
-        }
-
         Optional<NbtCompound> optional = canMergeStack(stack, nbtList);
         if (optional.isPresent()) {
             NbtCompound nbtCompound2 = optional.get();
@@ -187,14 +209,7 @@ public abstract class GenetixBundleItem
     }
 
     private int getItemOccupancy(ItemStack stack) {
-        NbtCompound nbtCompound;
-        if (stack.isOf(Items.BUNDLE)) {
-            return 4 + getBundleOccupancy(stack);
-        }
-        if ((stack.isOf(Items.BEEHIVE) || stack.isOf(Items.BEE_NEST)) && stack.hasNbt() && (nbtCompound = BlockItem.getBlockEntityNbt(stack)) != null && !nbtCompound.getList("Bees", NbtElement.COMPOUND_TYPE).isEmpty()) {
-            return maxStorage;
-        }
-        return maxStorage / stack.getMaxCount();
+        return 64 / stack.getMaxCount();
     }
 
     private int getBundleOccupancy(ItemStack stack) {
@@ -259,8 +274,25 @@ public abstract class GenetixBundleItem
 
     @Override
     public Optional<TooltipData> getTooltipData(ItemStack stack) {
+//        DefaultedList<ItemStack> defaultedList = DefaultedList.of();
+//        getBundledStacks(stack).forEach(defaultedList::add);
+//        return Optional.of(new BundleTooltipData(defaultedList, getBundleOccupancy(stack)));
         DefaultedList<ItemStack> defaultedList = DefaultedList.of();
-        getBundledStacks(stack).forEach(defaultedList::add);
+        Map<Item, Integer> map = new HashMap<>();
+        Set<Item> set = new LinkedHashSet<>();
+        getBundledStacks(stack).forEach(content -> {
+            Item item = content.getItem();
+            int count = content.getCount();
+            if (set.contains(item)) {
+                map.replace(item, map.get(item) + count);
+            } else {
+                map.put(item, count);
+                set.add(item);
+            }
+        });
+        set.forEach(item -> {
+            defaultedList.add(new ItemStack(item, map.get(item)));
+        });
         return Optional.of(new BundleTooltipData(defaultedList, getBundleOccupancy(stack)));
     }
 

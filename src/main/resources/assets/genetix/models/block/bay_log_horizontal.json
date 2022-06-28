@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column_horizontal",
+  "textures": {
+    "end": "genetix:block/bay_log_top",
+    "side": "genetix:block/bay_log"
+  }
+}

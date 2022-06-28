@@ -15,10 +15,18 @@ import java.util.stream.Collectors;
 import static com.asakibi.genetix.Logger.*;
 
 public class Chromosome {
-    private final Map<Loci, Integer> GENES;
+    private final Map<Loci, Integer> genes;
 
     public Chromosome(Chromosome chromosome) {
-        GENES = new HashMap<>(chromosome.GENES);
+        this.genes = new HashMap<>(chromosome.genes);
+    }
+
+    public Chromosome(NbtCompound nbt) {
+        this.genes = new HashMap<>();
+        nbt.getKeys().forEach(loci -> {
+            Integer value = nbt.getInt(loci);
+            genes.put(Loci.valueOf(loci), value);
+        });
     }
 
     public static Chromosome getRandomChromosome(ChromosomeStructure chromosomeStructure,
@@ -36,27 +44,27 @@ public class Chromosome {
                        boolean isNatural
     ) {
         if (isNatural) {
-            GENES = chromosomeStructure.getLocus().stream().collect(
+            this.genes = chromosomeStructure.getLocus().stream().collect(
                 Collectors.toMap(e -> e, e -> e.getNaturalRandomValue(random))
             );
             this.naturalGeneMutation(random);
         }
 
         else
-            GENES = chromosomeStructure.getLocus().stream().collect(
+            this.genes = chromosomeStructure.getLocus().stream().collect(
                 Collectors.toMap(e -> e, e -> e.getHereditaryRandomValue(random))
             );
     }
 
     public Chromosome(ChromosomeStructure chromosomeStructure,
                       NbtCompound nbtCompound) {
-        GENES = chromosomeStructure.getLocus().stream().collect(
+        this.genes = chromosomeStructure.getLocus().stream().collect(
             Collectors.toMap(e -> e, e -> nbtCompound.getInt(e.name()))
         );
     }
 
     public int getValue(Loci loci) {
-        return GENES.get(loci);
+        return this.genes.get(loci);
     }
 
     protected void crossover(Random random,
@@ -65,7 +73,7 @@ public class Chromosome {
                            ) {
         if (GeneticVariationConfig.crossover_on) {
             if (CrossoverConfig.overall_override_on) {
-                GENES.replaceAll((loci, value) -> {
+                this.genes.replaceAll((loci, value) -> {
                         boolean flag = getRandomBoolean(random, CrossoverConfig.overall_override_crossover_factor);
                         if (flag) {
                             int newValue = chromosome.getValue(loci);
@@ -79,7 +87,7 @@ public class Chromosome {
                 );
             }
             else {
-                GENES.replaceAll((loci, value) -> {
+                this.genes.replaceAll((loci, value) -> {
                     boolean flag = getRandomBoolean(random, chromosomeStructure.getCrossoverFactor());
                     if (flag) {
                         int newValue = chromosome.getValue(loci);
@@ -99,7 +107,7 @@ public class Chromosome {
     protected void hereditaryGeneMutation(Random random) {
         if (GeneticVariationConfig.hereditary_mutation_on) {
             if (HereditaryMutationConfig.overall_override_on) {
-                GENES.replaceAll((loci, value) -> {
+                this.genes.replaceAll((loci, value) -> {
                     boolean flag = getRandomBoolean(random, HereditaryMutationConfig.overall_basic_mutation_factor);
                     if (flag) {
                         int newValue = loci.getMutatedValue(random, getValue(loci));
@@ -112,7 +120,7 @@ public class Chromosome {
                 });
             }
             else {
-                GENES.replaceAll((loci, value) -> {
+                this.genes.replaceAll((loci, value) -> {
                         boolean flag = getRandomBoolean(random, loci.getHereditaryMutationFactor());
                         if (flag) {
                             int newValue = loci.getMutatedValue(random, getValue(loci));
@@ -130,7 +138,7 @@ public class Chromosome {
     private void naturalGeneMutation(Random random) {
         if (GeneticVariationConfig.natural_mutation_on) {
             if (NaturalMutationConfig.overall_override_on) {
-                GENES.replaceAll((loci, value) -> {
+                this.genes.replaceAll((loci, value) -> {
                         boolean flag = getRandomBoolean(random, NaturalMutationConfig.overall_override_mutation_factor);
                         if (flag) {
                             int newValue = loci.getMutatedValue(random, getValue(loci));
@@ -143,7 +151,7 @@ public class Chromosome {
                     });
             }
             else {
-                GENES.replaceAll((loci, value) -> {
+                this.genes.replaceAll((loci, value) -> {
                         boolean flag = getRandomBoolean(random, loci.getNaturalMutationFactor());
                         if (flag) {
                             int newValue = loci.getMutatedValue(random, getValue(loci));
@@ -167,14 +175,14 @@ public class Chromosome {
 
     @Override
     public String toString() {
-        return GENES.entrySet().stream()
+        return this.genes.entrySet().stream()
             .map(entry -> entry.getKey().name() + "=" + entry.getValue())
             .collect(Collectors.joining(", ")
             );
     }
 
     public String getShortString() {
-        return GENES.entrySet().stream()
+        return this.genes.entrySet().stream()
             .map(entry -> entry.getKey().getShortName() + "=" + entry.getValue())
             .collect(Collectors.joining(", ")
             );
@@ -182,7 +190,7 @@ public class Chromosome {
 
     public NbtCompound toNbt() {
         NbtCompound nbtCompound = new NbtCompound();
-        GENES.forEach((loci, value) -> nbtCompound.putInt(loci.name(), value));
+        this.genes.forEach((loci, value) -> nbtCompound.putInt(loci.name(), value));
         return nbtCompound;
     }
 }

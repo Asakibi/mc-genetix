@@ -2,14 +2,13 @@ package com.asakibi.genetix.item;
 
 import com.asakibi.genetix.Mod;
 import com.asakibi.genetix.block.entity.FruitAndSeedsCropEntity;
-import com.asakibi.genetix.block.entity.GenetixCropEntity;
 import com.asakibi.genetix.config.PlantConfig;
 import com.asakibi.genetix.genetics.Diploid;
+import com.asakibi.genetix.genetics.Gamete;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.CropBlock;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.item.TooltipContext;
-import net.minecraft.entity.ItemEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
@@ -57,14 +56,14 @@ public class CottonSwabItem extends Item {
                         info.putInt("num", capacity);
                         info.putString("diploid_structure", cropEntity.getDiploid().getLowerCaseStructureName());
 
-                        NbtList parents = new NbtList();
+                        NbtList gametes = new NbtList();
 
                         Diploid diploid = cropEntity.getDiploid();
                         for (int i = 0; i < PlantConfig.cotton_swab_capacity; i++) {
-                            parents.add(diploid.toNBT());
+                            gametes.add(new Gamete(diploid, random).toNBT());
                         }
 
-                        thisSwab.setSubNbt("parents", parents);
+                        thisSwab.setSubNbt("gametes", gametes);
                         thisSwab.setSubNbt("info", info);
                     } else {
                         NbtCompound info = thisSwab.getSubNbt("info");
@@ -72,20 +71,20 @@ public class CottonSwabItem extends Item {
                         boolean diploidStructures = cropEntity.getDiploid().getLowerCaseStructureName()
                             .equals(info.getString("diploid_structure"));
 
-                        NbtList parents = thisSwab.getNbt().getList("parents", NbtCompound.COMPOUND_TYPE);
+                        NbtList gametes = thisSwab.getNbt().getList("gametes", NbtCompound.COMPOUND_TYPE);
 
                         if (num > 0 && diploidStructures) {
                             int flag = cropEntity.countVacancies();
                             while (flag > 0 && num > 0) {
-                                NbtCompound parent = parents.getCompound(num - 1);
+                                NbtCompound gamete = gametes.getCompound(num - 1);
 
-                                cropEntity.addParents(new Diploid(parent), 1);
-                                parents.remove(num - 1);
+                                cropEntity.addGametes(new Gamete(gamete), 1);
+                                gametes.remove(num - 1);
                                 flag = cropEntity.countVacancies();
                                 num--;
                             }
 
-                            thisSwab.setSubNbt("parents", parents);
+                            thisSwab.setSubNbt("gametes", gametes);
                             info.putInt("num", num);
                         }
                     }
@@ -113,8 +112,8 @@ public class CottonSwabItem extends Item {
     public boolean isNew(ItemStack itemStack) {
         NbtCompound itemStackNbt = itemStack.getNbt();
         if (itemStackNbt == null) return true;
-        NbtList parents = itemStackNbt.getList("parents", NbtElement.COMPOUND_TYPE);
-        return parents == null;
+        NbtList gametes = itemStackNbt.getList("gametes", NbtElement.COMPOUND_TYPE);
+        return gametes == null;
     }
 
     private String getPrefix() {

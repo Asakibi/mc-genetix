@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class ProductBundleItem extends GenetixBundleItem {
 
-    public static final Map<Item, Integer> ITEM_CATEGORY_MAP = Map.of(
+    public final Map<Item, Integer> ITEM_CATEGORY_MAP = Map.of(
         ItemRegistry.RED_TOMATO, 0,
         ItemRegistry.PINK_TOMATO, 0,
         ItemRegistry.ORANGE_TOMATO, 0,

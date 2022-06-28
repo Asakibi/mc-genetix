@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "genetix:block/bay_slab"
+    },
+    "type=double": {
+      "model": "genetix:block/bay_planks"
+    },
+    "type=top": {
+      "model": "genetix:block/bay_slab_top"
+    }
+  }
+}

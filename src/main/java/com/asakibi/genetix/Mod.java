@@ -17,7 +17,7 @@ public class Mod implements ModInitializer {
 	public void onInitialize() {
 		ModConfig modConfig = new ModConfig();
 		modConfig.load();
-		ConfiguredFeatureRegistry.register();
+//		ConfiguredFeatureRegistry.register();
 		ItemRegistry.registerAll();
 		EntityRegistry.registerAll();
 		BlockRegistry.registerAll();
