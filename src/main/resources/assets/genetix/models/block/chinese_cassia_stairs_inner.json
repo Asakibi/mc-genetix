@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/inner_stairs",
+  "textures": {
+    "bottom": "genetix:block/chinese_cassia_planks",
+    "side": "genetix:block/chinese_cassia_planks",
+    "top": "genetix:block/chinese_cassia_planks"
+  }
+}

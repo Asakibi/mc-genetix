@@ -18,8 +18,8 @@ public class ConfiguredFeatureRegistry {
             BlockStateProvider.of(BlockRegistry.BAY_LOG),
             new StraightTrunkPlacer(5, 1, 2),
             BlockStateProvider.of(BlockRegistry.BAY_LEAVES),
-            new BlobFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(0), 4),
-            new TwoLayersFeatureSize(1, 0, 2)
+            new BlobFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(0), 3),
+            new TwoLayersFeatureSize(0, 0, 2)
         ).build());
 
     public static final RegistryEntry<PlacedFeature> BAY_CHECKED =
@@ -32,7 +32,23 @@ public class ConfiguredFeatureRegistry {
             new RandomFeatureConfig(List.of(new RandomFeatureEntry(BAY_CHECKED, 0.5f)),
             BAY_CHECKED));
 
-//    public static void register() {
-//        System.out.print("genetix::ConfiguredFeatureRegistry");
-//    }
+    public static final RegistryEntry<ConfiguredFeature<TreeFeatureConfig, ?>> CHINESE_CASSIA_TREE =
+        ConfiguredFeatures.register("chinese_cassia_tree", Feature.TREE, new TreeFeatureConfig.Builder(
+            BlockStateProvider.of(BlockRegistry.CHINESE_CASSIA_LOG),
+            new StraightTrunkPlacer(5, 1, 2),
+            BlockStateProvider.of(BlockRegistry.CHINESE_CASSIA_LEAVES),
+            new BlobFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(0), 3),
+            new TwoLayersFeatureSize(0, 0, 2)
+        ).build());
+
+    public static final RegistryEntry<PlacedFeature> CHINESE_CASSIA_CHECKED =
+        PlacedFeatures.register("chinese_cassia_checked", CHINESE_CASSIA_TREE,
+            PlacedFeatures.wouldSurvive(BlockRegistry.CHINESE_CASSIA_SAPLING)
+        );
+
+    public static final RegistryEntry<ConfiguredFeature<RandomFeatureConfig, ?>> CHINESE_CASSIA_SPAWN =
+        ConfiguredFeatures.register("chinese_cassia_spawn", Feature.RANDOM_SELECTOR,
+            new RandomFeatureConfig(List.of(new RandomFeatureEntry(CHINESE_CASSIA_CHECKED, 0.5f)),
+                CHINESE_CASSIA_CHECKED));
+
 }

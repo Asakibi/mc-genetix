@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "genetix:block/stripped_bay_log",
+    "side": "genetix:block/stripped_bay_log"
+  }
+}

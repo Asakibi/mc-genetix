@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "wooden_button",
+  "ingredients": [
+    {
+      "item": "genetix:chinese_cassia_planks"
+    }
+  ],
+  "result": {
+    "item": "genetix:chinese_cassia_button"
+  }
+}

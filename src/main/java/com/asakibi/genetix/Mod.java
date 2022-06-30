@@ -5,7 +5,6 @@ import com.asakibi.genetix.block.registry.BlockRegistry;
 import com.asakibi.genetix.config.ModConfig;
 import com.asakibi.genetix.entity.EntityRegistry;
 import com.asakibi.genetix.item.registry.ItemRegistry;
-import com.asakibi.genetix.world.ConfiguredFeatureRegistry;
 import com.asakibi.genetix.world.generation.WorldGeneration;
 import net.fabricmc.api.ModInitializer;
 

@@ -1,0 +1,9 @@
+{
+    "replace": false,
+    "values": [
+        "genetix:bay_log",
+        "genetix:bay_wood",
+        "genetix:stripped_bay_log",
+        "genetix:stripped_bay_wood"
+    ]
+}

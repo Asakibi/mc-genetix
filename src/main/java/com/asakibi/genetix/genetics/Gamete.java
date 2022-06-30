@@ -5,7 +5,6 @@ import net.minecraft.util.math.random.Random;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 
 public class Gamete {
 

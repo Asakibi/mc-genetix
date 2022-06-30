@@ -12,6 +12,9 @@ public class TreeGeneration{
         BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.PLAINS),
             GenerationStep.Feature.VEGETAL_DECORATION,
             PlacedFeatureRegistry.BAY_PLACED.getKey().get());
+        BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.PLAINS),
+            GenerationStep.Feature.VEGETAL_DECORATION,
+            PlacedFeatureRegistry.CHINESE_CASSIA_PLACED.getKey().get());
     }
 
 }

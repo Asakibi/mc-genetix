@@ -1,6 +1,7 @@
 {
   "itemGroup.genetix.default": "Genetix - Default",
   "itemGroup.genetix.tools": "Genetix - Tools",
+  "itemGroup.genetix.blocks": "Genetix - Blocks",
   "itemGroup.genetix.food": "Genetix - Food",
 
   "item.genetix.animal_genotyping_cotton_swab": "Animal Cotton Swab",
@@ -17,6 +18,7 @@
   "item.genetix.cotton_swab.tooltip.null": "§o§7No data§r",
   "item.genetix.cotton_swab.tooltip.structure.tomato": "Tomato",
   "item.genetix.cotton_swab.tooltip.structure.garlic": "Garlic",
+  "item.genetix.cotton_swab.tooltip.structure.scallion": "Scallion",
 
   "item.genetix.seed_bundle": "Seed Bundle",
   "item.genetix.product_bundle": "Product Bundle",
@@ -66,6 +68,45 @@
   "item.genetix.white_garlic": "White Garlic",
   "item.genetix.purple_garlic": "Purple Garlic",
   "item.genetix.garlic_seeds": "Garlic Seeds",
+
+  "item.genetix.scallion": "Scallion",
+  "item.genetix.scallion_seeds": "Scallion Seeds",
+
+  "block.genetix.bay_leaves": "Bay Leaves",
+  "block.genetix.bay_log": "Bay Log",
+  "block.genetix.bay_sapling": "Bay Sapling",
+  "block.genetix.bay_planks": "Bay Planks",
+  "block.genetix.bay_stairs": "Bay Stairs",
+  "block.genetix.bay_slab": "Bay Slab",
+  "block.genetix.bay_fence": "Bay Fence",
+  "block.genetix.bay_fence_gate": "Bay Fence Gate",
+  "block.genetix.bay_trapdoor": "Bay Trapdoor",
+  "block.genetix.bay_button": "Bay Button",
+  "block.genetix.bay_pressure_plate": "Bay Pressure Plate",
+  "block.genetix.bay_door": "Bay Door",
+  "block.genetix.bay_sign": "Bay Sign",
+  "block.genetix.bay_wall_sign": "Bay Wall Sign",
+  "block.genetix.bay_wood": "Bay Wood",
+  "block.genetix.stripped_bay_log": "Stripped Bay Log",
+  "block.genetix.stripped_bay_wood": "Stripped Bay Wood",
+
+  "block.genetix.chinese_cassia_leaves": "Chinese Cassia Leaves",
+  "block.genetix.chinese_cassia_log": "Chinese Cassia Log",
+  "block.genetix.chinese_cassia_sapling": "Chinese Cassia Sapling",
+  "block.genetix.chinese_cassia_planks": "Chinese Cassia Planks",
+  "block.genetix.chinese_cassia_stairs": "Chinese Cassia Stairs",
+  "block.genetix.chinese_cassia_slab": "Chinese Cassia Slab",
+  "block.genetix.chinese_cassia_fence": "Chinese Cassia Fence",
+  "block.genetix.chinese_cassia_fence_gate": "Chinese Cassia Fence Gate",
+  "block.genetix.chinese_cassia_trapdoor": "Chinese Cassia Trapdoor",
+  "block.genetix.chinese_cassia_button": "Chinese Cassia Button",
+  "block.genetix.chinese_cassia_pressure_plate": "Chinese Cassia Pressure Plate",
+  "block.genetix.chinese_cassia_door": "Chinese Cassia Door",
+  "block.genetix.chinese_cassia_sign": "Chinese Cassia Sign",
+  "block.genetix.chinese_cassia_wall_sign": "Chinese Cassia Wall Sign",
+  "block.genetix.chinese_cassia_wood": "Chinese Cassia Wood",
+  "block.genetix.stripped_chinese_cassia_log": "Stripped Chinese Cassia Log",
+  "block.genetix.stripped_chinese_cassia_wood": "Stripped Chinese Cassia Wood",
 
   "entity.genetix.sheep": "Sheep"
 }

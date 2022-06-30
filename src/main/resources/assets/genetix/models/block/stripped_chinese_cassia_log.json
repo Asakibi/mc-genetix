@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "genetix:block/stripped_chinese_cassia_log_top",
+    "side": "genetix:block/stripped_chinese_cassia_log"
+  }
+}

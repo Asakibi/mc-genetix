@@ -1,7 +1,12 @@
 {
   "variants": {
-    "": {
-      "model": "genetix:block/bay_leaves"
-    }
+    "": [
+      {
+        "model": "genetix:block/bay_leaves_1"
+      },
+      {
+        "model": "genetix:block/bay_leaves_2"
+      }
+    ]
   }
 }

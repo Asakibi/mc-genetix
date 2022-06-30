@@ -1,0 +1,9 @@
+{
+    "replace": false,
+    "values": [
+        "genetix:chinese_cassia_log",
+        "genetix:chinese_cassia_wood",
+        "genetix:stripped_chinese_cassia_log",
+        "genetix:stripped_chinese_cassia_wood"
+    ]
+}

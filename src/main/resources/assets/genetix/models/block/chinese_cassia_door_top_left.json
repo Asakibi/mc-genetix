@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/door_top_left",
+  "textures": {
+    "bottom": "genetix:block/chinese_cassia_door_bottom",
+    "top": "genetix:block/chinese_cassia_door_top"
+  }
+}

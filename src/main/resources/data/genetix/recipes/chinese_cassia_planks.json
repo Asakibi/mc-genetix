@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    {
+      "tag": "genetix:chinese_cassia_logs"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "item": "genetix:chinese_cassia_planks"
+  }
+}

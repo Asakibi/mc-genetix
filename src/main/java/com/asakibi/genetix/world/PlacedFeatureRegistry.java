@@ -13,4 +13,12 @@ public class PlacedFeatureRegistry {
                 PlacedFeatures.createCountExtraModifier(1, 0.5f, 1)
             )
         );
+
+    public static final RegistryEntry<PlacedFeature> CHINESE_CASSIA_PLACED =
+        PlacedFeatures.register("chinese_cassia_placed",
+            ConfiguredFeatureRegistry.CHINESE_CASSIA_SPAWN,
+            VegetationPlacedFeatures.modifiers(
+                PlacedFeatures.createCountExtraModifier(1, 0.5f, 1)
+            )
+        );
 }

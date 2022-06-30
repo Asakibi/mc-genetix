@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/template_trapdoor_bottom",
+  "textures": {
+    "texture": "genetix:block/chinese_cassia_trapdoor"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "wooden_button",
+  "ingredients": [
+    {
+      "item": "genetix:bay_planks"
+    }
+  ],
+  "result": {
+    "item": "genetix:bay_button"
+  }
+}

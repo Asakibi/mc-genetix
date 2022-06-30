@@ -1,6 +1,6 @@
 package com.asakibi.genetix.block.entity.impl;
 
-import com.asakibi.genetix.block.entity.UnsowableFruitAndSeedCropEnity;
+import com.asakibi.genetix.block.entity.UnsowableFruitAndSeedCropEntity;
 import com.asakibi.genetix.block.registry.BlockEntityRegistry;
 import com.asakibi.genetix.config.PlantConfig;
 import com.asakibi.genetix.genetics.Diploid;
@@ -12,7 +12,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.util.math.BlockPos;
 
-public class TomatoCropEntity extends UnsowableFruitAndSeedCropEnity {
+public class TomatoCropEntity extends UnsowableFruitAndSeedCropEntity {
 
     public TomatoCropEntity(BlockPos pos, BlockState state) {
         super(BlockEntityRegistry.TOMATO_CROP_ENTITY, pos, state, DiploidStructure.TOMATO);

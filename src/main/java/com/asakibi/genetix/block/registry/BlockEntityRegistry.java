@@ -16,6 +16,8 @@ public class BlockEntityRegistry {
     public static BlockEntityType<GarlicCropEntity> GARLIC_CROP_ENTITY;
     public static BlockEntityType<ScallionCropEntity> SCALLION_CROP_ENTITY;
 
+//    public static BlockEntityType<SignBlockEntity> SIGN;
+
     public static void registerAll() {
         TOMATO_CROP_ENTITY = register("tomato_crop_entity", TomatoCropEntity::new,
             BlockRegistry.TOMATO_CROP
@@ -28,6 +30,9 @@ public class BlockEntityRegistry {
             BlockRegistry.SCALLION_CROP,
             BlockRegistry.SCALLION_CROP_SEED
         );
+//        SIGN = register("genetix_sign", SignBlockEntity::new,
+//            BlockRegistry.BAY_SIGN,
+//            BlockRegistry.BAY_WALL_SIGN);
     }
 
     private static <T extends BlockEntity> BlockEntityType<T> register(

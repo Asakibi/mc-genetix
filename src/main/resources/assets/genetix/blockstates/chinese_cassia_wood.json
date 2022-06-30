@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "genetix:block/chinese_cassia_wood",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "genetix:block/chinese_cassia_wood"
+    },
+    "axis=z": {
+      "model": "genetix:block/chinese_cassia_wood",
+      "x": 90
+    }
+  }
+}

@@ -102,7 +102,7 @@ public abstract class FruitAndSeedsCropEntity extends GenetixCropEntity {
         markDirty();
     }
 
-    private final void addGamete(Gamete gamete, int num) {
+    private void addGamete(Gamete gamete, int num) {
         NbtCompound gameteNbt = gamete.toNBT();
 
         boolean existed = gametes.containsKey(gameteNbt);

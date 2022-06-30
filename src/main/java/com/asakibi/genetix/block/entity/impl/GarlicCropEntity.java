@@ -2,7 +2,6 @@ package com.asakibi.genetix.block.entity.impl;
 
 import com.asakibi.genetix.block.entity.SowableFruitCropEntity;
 import com.asakibi.genetix.block.registry.BlockEntityRegistry;
-import com.asakibi.genetix.config.PlantConfig;
 import com.asakibi.genetix.genetics.Diploid;
 import com.asakibi.genetix.genetics.DiploidStructure;
 import com.asakibi.genetix.genetics.Trait;

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "genetix:block/chinese_cassia_sapling"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/button",
+  "textures": {
+    "texture": "genetix:block/chinese_cassia_planks"
+  }
+}
